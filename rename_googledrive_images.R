@@ -71,7 +71,7 @@ read_and_title <- as_mapper(~curl_download(url = ..4,
 dat <- dat %>% 
   gather(key = "photo_type", value = "url", 3:8) %>%
   filter(url != 'https://drive.google.com/uc?export=download&id=NA') %>% # get rid of NA's (missing or not taken photos)
-  arrange(markerID, photo_type) # organize by bird
+  arrange(markerID, photo_type) # organize by bird and photo type
 dat
 
 # finally, download and name jpgs using purrr
