@@ -65,16 +65,15 @@ dat <- dat %>%
 
 # function for naming images and reading links: https://stackoverflow.com/questions/54262620/downloading-images-using-curl-library-in-a-loop-over-data-frame
 read_and_title <- as_mapper(~curl_download(url = ..4, 
-                                           destfile = paste0(here(), ..1,"_",..2,"_",..3,".jpg")))
+                                           destfile = paste0(here(), '/', ..1,"_",..2,"_",..3,".jpg")))
 
 # change format so photo columns become variable in column 'photo_type'
 dat <- dat %>% 
   gather(key = "photo_type", value = "url", 3:8) %>%
   filter(url != 'https://drive.google.com/uc?export=download&id=NA') %>% # get rid of NA's (missing or not taken photos)
-  arrange(markerID) # organize by bird
+  arrange(markerID, photo_type) # organize by bird
 dat
 
 # finally, download and name jpgs using purrr
 dat %>%
   pmap_chr(read_and_title)
-
