@@ -1,2 +1,2 @@
 # bandingPhotosGoogleDrive
-Download and name kestrel banding photos stored in Google Drive
+Download and name banding photos stored in Google Drive
